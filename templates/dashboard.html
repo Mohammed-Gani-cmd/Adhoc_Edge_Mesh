@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ad Hoc Edge Mesh</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand"><div class="mark">EM</div><div><div class="eyebrow">LOCAL COMPUTE NETWORK</div><h1>Ad Hoc Edge Mesh</h1><p>Distributed image processing on mesh or cloud.</p></div></div>
+    <div id="modeControl"><strong id="modeState" role="status" aria-live="polite">Cloud Off</strong><button id="modeButton" type="button">Turn Cloud On</button><span id="modeError" role="alert"></span></div>
+  </header>
+
+  <section class="hero-grid">
+    <div class="card upload-card">
+      <div class="section-label">01 / NEW JOB</div><h2>Resize a batch</h2><p>New jobs use the selected execution mode. Mesh uses LAN workers; Cloud sends every image directly to AWS.</p>
+      <form id="jobForm">
+        <label class="dropzone" for="images"><span class="upload-icon">↑</span><strong id="fileLabel">Choose JPEG, PNG, or WebP images</strong><small>Up to 100 images · 100 MB total</small><input id="images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple required></label>
+        <div class="two"><label>Maximum width<input name="max_width" type="number" min="1" max="10000" value="1280"></label><label>Maximum height<input name="max_height" type="number" min="1" max="10000" value="720"></label></div>
+        <button id="submitBtn" type="submit">Distribute job <span>→</span></button><div id="uploadMsg" class="message"></div>
+      </form>
+    </div>
+
+    <div class="card network-card">
+      <div class="row"><div><div class="section-label">02 / NETWORK</div><h2>Live nodes</h2></div><span id="peerCount" class="mini-pill">0 online</span></div>
+      <div id="peers" class="peers"></div>
+      <div class="network-note">mDNS discovery is automatic. Manual <code>--peer</code> registration works when multicast is blocked.</div>
+    </div>
+  </section>
+
+  <section class="card job-card">
+    <div class="job-discovery">
+      <div class="row"><label for="job-selector"><strong>Recent jobs from all devices</strong></label><button id="refreshJobs" type="button" class="button">Refresh jobs</button></div>
+      <select id="job-selector" aria-label="Recent jobs"><option value="">No jobs in this coordinator session</option></select>
+      <p id="jobDiscoveryNote" aria-live="polite">Phone and browser submissions appear automatically. Latest 50 jobs; history resets when the coordinator restarts.</p>
+      <p id="jobListError" role="alert"></p><p id="jobDetailError" role="alert"></p>
+    </div>
+    <div class="job-head"><div><div class="section-label">03 / JOB MONITOR</div><div class="job-title"><h2>Current workload</h2><span id="jobStatus" class="pill idle">IDLE</span></div><span id="jobMeta">No job submitted yet</span></div><div class="job-actions"><span id="percent">0%</span><a id="download" class="button disabled">Download ZIP</a></div></div>
+    <p id="s3Result" class="s3-result" role="status"></p>
+    <div class="progress"><div id="bar"></div></div>
+    <div id="stats" class="stats"><div><b>0</b><span>Completed</span></div><div><b>0</b><span>Processing</span></div><div><b>0</b><span>Retries</span></div><div><b>0</b><span>Failed</span></div></div>
+    <div class="tablewrap"><table><thead><tr><th>IMAGE</th><th>STATE</th><th>ASSIGNED NODE</th><th>ATTEMPTS</th><th>OUTPUT</th></tr></thead><tbody id="tasks"></tbody></table></div>
+  </section>
+  <footer><span>Edge Mesh v1.1</span><span>Mesh or direct AWS · Temporary cloud staging</span></footer>
+</div>
+<script src="/static/app.js"></script>
+</body></html>

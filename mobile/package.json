@@ -1,0 +1,36 @@
+{
+  "name": "edge-mesh-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start --lan --port 8082",
+    "android": "expo start --android --lan --port 8082",
+    "ios": "expo start --ios --lan --port 8082",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types tests/mobile.test.mjs",
+    "bundle:check": "expo export --platform all --output-dir dist"
+  },
+  "dependencies": {
+    "expo": "^58.0.19",
+    "expo-crypto": "~58.0.7",
+    "expo-device": "~58.0.5",
+    "expo-file-system": "~58.0.11",
+    "expo-image-manipulator": "~58.0.15",
+    "expo-image-picker": "~58.0.10",
+    "expo-secure-store": "~58.0.2",
+    "expo-sharing": "~58.0.20",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-safe-area-context": "~5.10.1"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "typescript": "~6.0.3"
+  }
+}

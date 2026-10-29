@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Edge Mesh",
+    "slug": "edge-mesh-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "microphonePermission": false
+        }
+      ],
+      "expo-secure-store",
+      "./plugins/with-lan-http.cjs",
+      "expo-sharing",
+      "expo-status-bar"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.edgemesh.mobile",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Connect to your Edge Mesh coordinator on your local network.",
+        "NSPhotoLibraryUsageDescription": "Choose images to submit to your Edge Mesh coordinator.",
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.edgemesh.mobile",
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "READ_MEDIA_IMAGES"
+      ]
+    }
+  }
+}
